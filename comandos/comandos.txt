@@ -1,0 +1,59 @@
+# Visualizar PODs
+kubectl get pods
+
+# Visualizar todos os PODs / Replicasets / Deployments / Services (Indepentende do namespace)
+kubectl get pods -A
+kubectl get replicasets -A
+kubectl get deployments -A
+kubectl get services -A
+
+# Visualizar detalhes do POD
+kubectl describe pods hjcc-1
+
+# Visualizar informações extendidas
+kubectl get pods -n kube-system -o wide
+
+# Visualizar pods em formato yaml
+kubectl get pods -o yaml
+
+# Criando POD NGINX
+kubectl run --image nginx --port 80 hjcc-webserver
+
+# Fingindo criar um POD
+kubectl run hjcc-1 --image alpine --dry-run=client -o yaml
+
+# Criando POD
+kubectl run hjcc-1 --image nginx --port 80 
+kubectl run -ti hjcc-2 --image busybox
+
+# Sunbindo o manifest (yaml) - O Create só cria, o apply modifica (se nao existiar, cria)
+kubectl apply -f kubernets.yml
+kubectl create -f kubernets.yml
+
+# Attach
+kubectl attach hjcc-2 -c hjcc-2 -it
+
+# Exec
+kubectl exec -it hjcc-1 -c nginx -- bash
+
+# Remover POD
+kubectl delete -f kubernets.yml
+
+# Opção "watch" para ver os Pods (Como se fosse um tail -f)
+kubetl get pods -w
+
+# Deployando e jogando as configs YML na tela
+kubetl apply -f deployment.yml -o yaml
+
+#Filtrando os Pods por label APP:
+kubetl get pods -l app=nginx-deployment
+
+# Criar Deployment
+kubectl create deployment --image nginx --replicas 3 nginx-deploy2
+
+# Simular a criação de um deploy
+kubectl create deployment --image nginx --replicas 3 nginx-deploy2 --dry-run=client -o yaml
+kubectl create deployment --image nginx --replicas 3 nginx-deploy2 --dry-run=client -o yaml > deploy.yml
+
+# Editar um deploy
+kubectl edit edit deploy/nginx-deployment
