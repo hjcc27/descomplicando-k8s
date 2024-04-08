@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: hjcc-nginx-httpd
+  name: hjcc-nginx-httpd
+spec:
+  containers:
+  - image: httpd 
+    name: hjcc-httpd
+    resources: {}
+  - image: busybox
+    name: hjcc-busybox
+    args:
+      - sleep
+      - "600"
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
