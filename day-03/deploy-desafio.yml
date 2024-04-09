@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  label:
+  labels:
     app: nginx-girus
     opa: sensacional-juvenal
   name: nginx-girus
@@ -15,16 +15,15 @@ spec:
   template:
     metadata:
       labels:
-        app: nginx
+        app: nginx-girus
     spec:
-      containers:
-      - image: nginx 1.16.0
-        name: nginx
-        resources:
+       containers:
+       - image: nginx:1.16.0
+         name: nginx
+         resources:
           limits:
-            cpu: 0.3
-            memory: 128Mi
+            cpu: "0.3"
+            memory: "128Mi"
           requests:
-            cpu: 0.1
-            memory: 64Mi
-status: {}
+            cpu: "0.1"
+            memory: "64Mi"
