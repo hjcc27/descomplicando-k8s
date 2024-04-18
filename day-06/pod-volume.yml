@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hjcc-web
+  name: hjcc-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hjcc-web
+  template:
+    metadata:
+      labels:
+        app: hjcc-web
+    spec:
+      containers:
+      - image: nginx
+        name: hjcc-web
+        ports:
+          - containerPort: 80
+        volumeMounts:
+          - name: nginx-data
+            mountPath: /mnt/data
+      volumes:
+      - name: nginx-data
+        persistentVolumeClaim: 
+          claimName: hjcc-pvc-local-teste 
