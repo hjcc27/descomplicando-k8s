@@ -10,8 +10,8 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  storageClassName: hjcc
+  storageClassName: hjcc-storageclass-nfs
   selector:
     matchLabels:
       ## Pegar o nome correspondente do PV
-      storage: nfs
+      storage: hjcc-pv-nfs

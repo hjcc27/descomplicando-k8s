@@ -2,8 +2,8 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   labels: 
-    storage: lento
-  name: storage-lento-hjcc
+    storage: hjcc-pv-local
+  name: hjcc-pv-local
 spec:
   capacity:
     storage: 1Gi
@@ -14,4 +14,4 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   hostPath: 
     path: /mnt/data
-  storageClassName: hjcc
+  storageClassName: hjcc-storageclass-local

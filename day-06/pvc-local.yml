@@ -10,7 +10,7 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  storageClassName: hjcc
+  storageClassName: hjcc-storageclass-local
   selector:
     matchLabels:
-      storage: lento
+      storage: hjcc-pv-local
