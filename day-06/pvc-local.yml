@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    pvc: hjcc-pvc-local
+  name: hjcc-pvc-local
+spec:
+  accessModes: 
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: hjcc
+  selector:
+    matchLabels:
+      storage: lento
