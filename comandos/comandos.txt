@@ -57,3 +57,68 @@ kubectl create deployment --image nginx --replicas 3 nginx-deploy2 --dry-run=cli
 
 # Editar um deploy
 kubectl edit edit deploy/nginx-deployment
+
+# Deletar um Deploy de outro namespace (que não o default)
+k delete deploy nginx-deploy3 -n hjcc
+
+# Describe 
+kubectl describe deploy -n hjcc nginx-deploy4
+
+# Criando Namescape
+kubectl create namespace hjcc
+kubectl create namespace hjcc --dry-run=client -o yaml
+
+# Veriricando um rollout em tempo real
+kubectl rollout status deployment -n hjcc nginx-deploy4
+
+# Aplicando e verificando o rollout
+kubectl apply -f deploy-strategies.yml; kubectl rollout status deployment -n hjcc nginx-deploy4
+
+# Acessando um POD com Namespace diferente
+ k exec -it nginx-deploy-7fc967b6cb-24kwf -n hjcc -c nginx -- bash
+
+# Aumento replicas (Scale)
+kubectl scale deployment nginx-deploy --replicas 10
+
+# Fazendo o rollback de um deploy
+kubectl rollout undo deployment -n hjcc nginx-deploy
+
+# Verificando o histórico (revisions) das modificações de um deploy
+kubectl rollout history deployment -n hjcc nginx-deploy
+
+# Verificando o que foi mofificado em uma determinada revision (9):
+kubectl rollout history deployment -n hjcc nginx-deploy --revision 9
+
+# Fazendo o rollback de um deploy para a revision 8
+kubectl rollout undo deployment -n hjcc nginx-deploy --to-revision 8
+
+# Pausando moficações de rollout/rollback de um deploy
+kubectl rollout pause deployment -n hjcc nginx-deploy
+
+# Despausando rollout/rollback de um deploy
+kubectl rollout resume deployment -n hjcc nginx-deploy
+
+# Forcando a recriação dos PODS
+kubectl rollout restart deployment -n hjcc nginx-deploy
+
+# Verificando o status de um rollout
+kubectl rollout status deployment -n hjcc nginx-deploy
+
+# Listar os ReplicaSets
+kubectl get replicasets
+kubectl get rs
+
+# Deletando rs
+kubectl delete replicaset nginx-replicaset
+kubectl delete -f nginx-replicaset.yaml
+
+# Storage Classes
+kubectl get storageclass
+kubectl get sc
+
+# PV
+kubectl get pv
+
+# PVC
+kubectl get pvc
+
