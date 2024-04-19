@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  labels: 
+    storage: hjcc-pv-local-teste
+  name: hjcc-pv-local-teste
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+#    - ReadOnlyMany   
+#    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  hostPath: 
+    path: /mnt/data
+  storageClassName: hjcc-storageclass-local-teste
